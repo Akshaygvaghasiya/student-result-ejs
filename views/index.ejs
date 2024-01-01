@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,
+        td {
+            padding: 5px 10px;
+
+        }
+
+        table {
+            width: auto;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        h1,
+        .a {
+            text-align: center;
+        }
+
+        .a {
+            text-decoration: none;
+            color: white;
+            background-color: green;
+            padding: 10px;
+            border-radius: 15px;
+            display: inline-block;
+
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            /* display: block; */
+            margin-bottom: 4px;
+        }
+
+        input {
+            /* width: 100%; */
+            padding: 3px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="/res" method="post">
+
+        <label for="rollno">Student Roll no:</label>
+        <input type="text" name="rollno" id="rollno" required><br><br>
+
+        <label for="name">Student Name:</label>
+        <input type="text" name="name" id="name" required><br><br>
+
+        <label for="s1">Student Subject 1:</label>
+        <input type="text" name="s1" id="s1" required><br><br>
+
+        <label for="s2">Student Subject 2:</label>
+        <input type="text" name="s2" id="s2" required><br><br>
+
+        <label for="s3">Student Subject 3:</label>
+        <input type="text" name="s3" id="s3" required><br><br>
+
+        <label for="s4">Student Subject 4:</label>
+        <input type="text" name="s4" id="s4" required><br><br>
+
+        <label for="s5">Student Subject 5:</label>
+        <input type="text" name="s5" id="s5" required><br><br>
+
+        <input type="submit" name="submit" value="submit" class="button">
+    </form>
+
+    <a href="/ten" class="a">show top 10</a>
+    <a href="/five" class="a">show top 5</a>
+
+    <table border="1">
+        <th>rollno</th>
+        <th>stu_name</th>
+        <th>s1</th>
+        <th>s2</th>
+        <th>s3</th>
+        <th>s4</th>
+        <th>s5</th>
+        <th>total</th>
+        <th>result</th>
+        <th>delete</th>
+        <th>update</th>
+
+        <% result.forEach(function(res){%>
+
+            <tr>
+                <td>
+                    <%= res.rollno%>
+                </td>
+                <td>
+                    <%= res.name%>
+                </td>
+                <td>
+                    <%= res.s1%>
+                </td>
+                <td>
+                    <%= res.s2%>
+                </td>
+                <td>
+                    <%= res.s3%>
+                </td>
+                <td>
+                    <%= res.s4%>
+                </td>
+                <td>
+                    <%= res.s5%>
+                </td>
+                <td>
+                    <%= res.total%>
+                </td>
+
+                <% var per = res.total/5 %>
+
+                <% if(per<=35) { %>
+                    <td><%= "fail"%></td>
+                <%}
+                else{%>
+                    <td><%= "pass"%></td>
+                <%}%>
+               <td><a href="/delete/<%= res.rollno%>">delete</a></td>
+               <td><a href="/update/<%= res.rollno%>">update</a></td>
+            </tr>
+            <%})%>
+    </table>
+</body>
+
+</html>
